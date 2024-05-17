@@ -34,6 +34,7 @@ const CreateProduct = () => {
         <div className="form__card">
           <label htmlFor="name">Product Name:</label>
           <input
+            required
             id="name"
             value={newProduct.name}
             onChange={(e) =>
@@ -46,6 +47,7 @@ const CreateProduct = () => {
         <div className="form__card">
           <label htmlFor="price">Product Narxi:</label>
           <input
+            required
             id="price"
             value={newProduct.price}
             onChange={(e) =>
@@ -58,6 +60,7 @@ const CreateProduct = () => {
         <div className="form__card">
           <label htmlFor="desc">Product Desc:</label>
           <input
+            required
             id="desc"
             value={newProduct.desc}
             onChange={(e) =>

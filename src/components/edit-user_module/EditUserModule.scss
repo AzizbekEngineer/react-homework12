@@ -1,0 +1,40 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0002;
+}
+
+.edit-user-model {
+    width: 400px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+
+    input,
+    button {
+        width: 100%;
+        height: 40px;
+        margin: 20px 0;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: 1px solid #0002;
+        outline: none;
+        border-radius: 5px;
+    }
+
+    .editClose {
+        background: red;
+        color: white;
+    }
+
+    .editSave {
+        background: green;
+        color: white;
+    }
+}

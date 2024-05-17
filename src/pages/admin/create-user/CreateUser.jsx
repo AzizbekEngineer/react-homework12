@@ -33,6 +33,7 @@ const CreateUser = () => {
         <div className="form__card">
           <label htmlFor="fullName">User Name:</label>
           <input
+            required
             id="fullName"
             value={newUser.fullName}
             onChange={(e) =>
@@ -45,6 +46,7 @@ const CreateUser = () => {
         <div className="form__card">
           <label htmlFor="age">User age:</label>
           <input
+            required
             id="age"
             value={newUser.age}
             onChange={(e) =>
@@ -57,6 +59,7 @@ const CreateUser = () => {
         <div className="form__card">
           <label htmlFor="birthDay">User Birthday:</label>
           <input
+            required
             id="birthDay"
             value={newUser.birthDay}
             onChange={(e) =>
@@ -69,6 +72,7 @@ const CreateUser = () => {
         <div className="form__card">
           <label htmlFor="username">User username:</label>
           <input
+            required
             id="username"
             value={newUser.username}
             onChange={(e) =>
