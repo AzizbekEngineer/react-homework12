@@ -1,25 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../create-product/createProduct.scss";
 import axios from "../../../api";
 import { toast } from "react-toastify";
 
-let initialState = {
-  name: "",
-  price: "",
-  desc: "",
-};
+// let initialState = {
+//   name: "",
+//   price: "",
+//   desc: "",
+// };
 
 const CreateUser = () => {
-  const [newUser, setNewUser] = useState(initialState);
+  // const [newUser, setNewUser] = useState(initialState);
+  const fullNameRef = useRef();
+  const ageRef = useRef();
+  const birthDayRef = useRef();
+  const usernameRef = useRef();
 
   const handleCreate = (e) => {
     e.preventDefault();
-    console.log(newUser);
+    // console.log(newUser);
 
+    let usersRef = {
+      fullName: fullNameRef.current.value,
+      age: ageRef.current.value,
+      birthDay: birthDayRef.current.value,
+      username: usernameRef.current.value,
+    };
     axios
-      .post("/users", newUser)
+      .post("/users", usersRef)
       .then((res) => {
-        setNewUser(initialState);
+        fullNameRef.current.value = "";
+        ageRef.current.value = "";
+        birthDayRef.current.value = "";
+        usernameRef.current.value = "";
         toast.success("Qo'shildi");
         console.log(res);
       })
@@ -35,10 +48,7 @@ const CreateUser = () => {
           <input
             required
             id="fullName"
-            value={newUser.fullName}
-            onChange={(e) =>
-              setNewUser((prev) => ({ ...prev, fullName: e.target.value }))
-            }
+            ref={fullNameRef}
             type="text"
             placeholder="fullName"
           />
@@ -48,10 +58,7 @@ const CreateUser = () => {
           <input
             required
             id="age"
-            value={newUser.age}
-            onChange={(e) =>
-              setNewUser((prev) => ({ ...prev, age: +e.target.value }))
-            }
+            ref={ageRef}
             type="number"
             placeholder="Age"
           />
@@ -61,10 +68,7 @@ const CreateUser = () => {
           <input
             required
             id="birthDay"
-            value={newUser.birthDay}
-            onChange={(e) =>
-              setNewUser((prev) => ({ ...prev, birthDay: e.target.value }))
-            }
+            ref={birthDayRef}
             type="date"
             placeholder="birthDay"
           />
@@ -74,10 +78,7 @@ const CreateUser = () => {
           <input
             required
             id="username"
-            value={newUser.username}
-            onChange={(e) =>
-              setNewUser((prev) => ({ ...prev, username: e.target.value }))
-            }
+            ref={usernameRef}
             type="text"
             placeholder="UserName"
           />

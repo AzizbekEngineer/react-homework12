@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./createProduct.scss";
 import axios from "../../../api";
 import { toast } from "react-toastify";
 import "./createProduct.scss";
 
-let initialState = {
-  name: "",
-  price: "",
-  desc: "",
-};
+// let initialState = {
+//   name: "",
+//   price: "",
+//   desc: "",
+// };
 
 const CreateProduct = () => {
-  const [newProduct, setNewProduct] = useState(initialState);
+  // const [newProduct, setNewProduct] = useState(initialState);
+  const nameRef = useRef();
+  const priceRef = useRef();
+  const descRef = useRef();
 
   const handleCreate = (e) => {
     e.preventDefault();
-    console.log(newProduct);
+    // console.log(newProduct);
+
+    let productRef = {
+      name: nameRef.current.value,
+      price: priceRef.current.value,
+      desc: descRef.current.value,
+    };
 
     axios
-      .post("/products", newProduct)
+      .post("/products", productRef)
       .then((res) => {
-        setNewProduct(initialState);
+        nameRef.current.value = "";
+        priceRef.current.value = "";
+        descRef.current.value = "";
         toast.success("Qo'shildi");
         console.log(res);
       })
@@ -36,10 +47,7 @@ const CreateProduct = () => {
           <input
             required
             id="name"
-            value={newProduct.name}
-            onChange={(e) =>
-              setNewProduct((prev) => ({ ...prev, name: e.target.value }))
-            }
+            ref={nameRef}
             type="text"
             placeholder="Nomi"
           />
@@ -49,10 +57,7 @@ const CreateProduct = () => {
           <input
             required
             id="price"
-            value={newProduct.price}
-            onChange={(e) =>
-              setNewProduct((prev) => ({ ...prev, price: +e.target.value }))
-            }
+            ref={priceRef}
             type="number"
             placeholder="Narxi"
           />
@@ -62,10 +67,7 @@ const CreateProduct = () => {
           <input
             required
             id="desc"
-            value={newProduct.desc}
-            onChange={(e) =>
-              setNewProduct((prev) => ({ ...prev, desc: e.target.value }))
-            }
+            ref={descRef}
             type="text"
             placeholder="Description"
           />
